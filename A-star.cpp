@@ -63,6 +63,14 @@ void A_star::a_star_search(Pair src, Pair dest)
 	/*initialize the starting cell on open list*/
 	_openList.insert(std::make_pair(std::make_pair(src.first, src.second), 0.0));
 
+	/*initialize first node of celldetails*/
+	(*cellDetails)[src.first][src.second].F = 0.0;
+	(*cellDetails)[src.first][src.second].G = 0.0;
+	(*cellDetails)[src.first][src.second].H = 0.0;
+	(*cellDetails)[src.first][src.second].parent.x = src.first;
+	(*cellDetails)[src.first][src.second].parent.y = src.second;
+
+
 	bool found = false;
 	Coordinates coord;
 	while (!_openList.empty())
@@ -119,10 +127,7 @@ void A_star::a_star_search(Pair src, Pair dest)
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].H = h;
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].parent.x = coord.x;
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].parent.y = coord.y;
-						break;
 					}
-					else
-						break;
 					
 				}
 			}
@@ -142,8 +147,8 @@ void A_star::tracePath(CellVec * cellvec, Pair dest)
 	int row = dest.first;
 	int col = dest.second;
 
-	while (!(((*cellvec)[row][col].parent.x == -1) &&
-		    ((*cellvec)[row][col].parent.y == -1)))
+	while (!(((*cellvec)[row][col].parent.x == row) &&
+		    ((*cellvec)[row][col].parent.y == col)))
 	{
 		Path.push_back(std::make_pair(row, col));
 		

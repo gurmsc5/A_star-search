@@ -23,18 +23,17 @@ TEST_CASE("Map generator test", "Map Generator class")
 
 TEST_CASE("A_star lists test", "All A_star lists")
 {
-	A_star a_star(std::make_pair(10, 10));
-	REQUIRE(a_star.getEdges() == std::make_pair(10, 10));
-
+	A_star a_star(std::make_pair(9, 10));
+	REQUIRE(a_star.getEdges() == std::make_pair(9, 10));
 	auto closedlist = a_star.get_closedListVec();
 	auto celldetails = a_star.getcellDetailsVec();
 
 	/*check if lists were allocated properly*/
-	REQUIRE(closedlist->size() == 10);
+	REQUIRE(closedlist->size() == 9);
 	
-	REQUIRE(celldetails->size() == 10);
+	REQUIRE(celldetails->size() == 9);
 	REQUIRE((*celldetails)[0][5].parent.x == -1);
 	REQUIRE((*celldetails)[0][5].parent.y == -1);
 
-	a_star.a_star_search(std::make_pair(9, 9), std::make_pair(4, 1));
+	a_star.a_star_search(std::make_pair(8, 0), std::make_pair(0, 0));
 }
