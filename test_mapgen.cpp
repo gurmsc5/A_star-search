@@ -35,6 +35,9 @@ TEST_CASE("A_star lists test", "All A_star lists")
 	REQUIRE((*celldetails)[0][5].parent.x == -1);
 	REQUIRE((*celldetails)[0][5].parent.y == -1);
 	auto map = a_star.GetMap();
+
 	a_star.setBlockade_coord(std::make_pair(7, 0), *map);
+	a_star.setBlockade_coord(std::make_pair(7, 1), *map);
+
 	a_star.a_star_search(std::make_pair(8, 0), std::make_pair(0, 0));
 }

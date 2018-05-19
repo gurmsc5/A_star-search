@@ -6,7 +6,7 @@
 #include "map-generator.hpp"
 
 /*aliases for lists to increase readability*/
-using OpenList = std::map<Pair, double>;
+using OpenList = std::map<double,Pair>;
 using ClosedList = std::vector<std::vector<bool>>;
 
 /*function wrapper to enable choosing from multiple distance formulas(future)*/

@@ -70,7 +70,7 @@ void A_star::a_star_search(Pair src, Pair dest)
 	(*cellDetails)[src.first][src.second].parent.y = src.second;
 
 	/*initialize the starting cell on open list*/
-	_openList.insert(std::make_pair(std::make_pair(src.first, src.second), 0.0));
+	_openList.insert(std::make_pair(0.0,std::make_pair(src.first, src.second)));
 
 
 	bool found = false;
@@ -84,8 +84,8 @@ void A_star::a_star_search(Pair src, Pair dest)
 		_openList.erase(_openList.begin());
 
 
-		coord.x = pair.first.first;
-		coord.y = pair.first.second;
+		coord.x = pair.second.first;
+		coord.y = pair.second.second;
 		/*add the coordinate pair to closed list*/
 		(*_closedList)[coord.x][coord.y] = true;
 
@@ -121,8 +121,8 @@ void A_star::a_star_search(Pair src, Pair dest)
 					/*add to the open list*/
 					if ((*cellDetails)[it->x + coord.x][it->y + coord.y].F == FLT_MAX ||
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].F > f) {
-						_openList.insert(std::make_pair(std::make_pair(it->x + coord.x,
-							it->y + coord.y), f));
+						_openList.insert(std::make_pair(f,std::make_pair(it->x + coord.x,
+							it->y + coord.y)));
 
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].F = f;
 						(*cellDetails)[it->x + coord.x][it->y + coord.y].G = g;
