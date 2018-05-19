@@ -60,7 +60,7 @@ public:
 
 class DistanceFormulas {
 public:
-	static double manhatten(Pair src, Pair dst);
+	static double euclidian(Pair src, Pair dst);
 };
 
 #endif // !A_STAR_HPP

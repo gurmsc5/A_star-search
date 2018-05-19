@@ -22,7 +22,7 @@ A_star::A_star(Pair edges):
 				{1,0},{1,1},{1,-1},
 				{-1,0},{-1,1},{-1,-1} };
 
-	set_heuristic(&DistanceFormulas::manhatten);
+	set_heuristic(&DistanceFormulas::euclidian);
 }
 
 A_star::~A_star()
@@ -175,7 +175,7 @@ void A_star::tracePath(CellVec * cellvec, Pair dest)
 
 
 
-double DistanceFormulas::manhatten(Pair src, Pair dst)
+double DistanceFormulas::euclidian(Pair src, Pair dst)
 {
 	return((double)sqrt((src.first - dst.first)*(src.first - dst.first)
 		+ (src.second - dst.second)*(src.second - dst.second)));
