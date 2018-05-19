@@ -60,8 +60,7 @@ bool A_star::found_destination(Pair src, Pair dest)
 
 void A_star::a_star_search(Pair src, Pair dest)
 {
-	/*initialize the starting cell on open list*/
-	_openList.insert(std::make_pair(std::make_pair(src.first, src.second), 0.0));
+
 
 	/*initialize first node of celldetails*/
 	(*cellDetails)[src.first][src.second].F = 0.0;
@@ -69,6 +68,9 @@ void A_star::a_star_search(Pair src, Pair dest)
 	(*cellDetails)[src.first][src.second].H = 0.0;
 	(*cellDetails)[src.first][src.second].parent.x = src.first;
 	(*cellDetails)[src.first][src.second].parent.y = src.second;
+
+	/*initialize the starting cell on open list*/
+	_openList.insert(std::make_pair(std::make_pair(src.first, src.second), 0.0));
 
 
 	bool found = false;
@@ -111,7 +113,7 @@ void A_star::a_star_search(Pair src, Pair dest)
 				else if((*_closedList)[it->x + coord.x][it->y + coord.y] == false &&
 				checkUnblocked(Map,std::make_pair(it->x+coord.x,it->y+coord.y)))
 				{
-					g = (*cellDetails)[it->x + coord.x][it->y + coord.y].G + 1.0;
+					g = (*cellDetails)[coord.x][coord.y].G + 1.0;
 					auto t = std::make_pair(it->x + coord.x, it->y + coord.y);
 					h = Heuristic(t, dest);
 					f = g + h;
