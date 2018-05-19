@@ -24,6 +24,8 @@ struct Cell {
 };
 
 
+
+
 /*aliases for better code readability*/
 using Pair = std::pair<int, int>;
 using CoordinatesVec = std::vector<std::vector<int>>;
@@ -43,7 +45,7 @@ public:
 		delete Map;
 	};
 	/*return a pointer to the constructed Map*/
-	CoordinatesVec * GetMap();
+	CoordinatesVec * GetMap() const;
 
 	/*set up a blockade given a pair of coordinates
 	a value of 1 on Map represents a blockade
@@ -58,10 +60,10 @@ public:
 	/*check if coordinates are within range
 	pair.first = x
 	pair.second = y*/
-	bool ValidCoordinates(Pair edges);
+	bool ValidCoordinates(Pair edges) const;
 
 	/*get the map edges*/
-	std::pair<int, int> getEdges();
+	std::pair<int, int> getEdges() const;
 
 	/*check if there is a blocked coordinate on the map*/
 	bool checkUnblocked(CoordinatesVec *map, Pair coord);

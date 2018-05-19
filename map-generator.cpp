@@ -7,7 +7,7 @@ Map_Generator::Map_Generator(Pair edges): Edges(edges){
 	Map = new std::vector(edges.first, std::vector<int>(edges.second));
 }
 
-CoordinatesVec * Map_Generator::GetMap() {
+CoordinatesVec * Map_Generator::GetMap() const {
 	return Map;
 }
 
@@ -35,23 +35,23 @@ Coordinates_List Map_Generator::setBlockade_coordlist(Coordinates_List &blockvec
 	return failedcoordinates;
 }
 
-bool Map_Generator::ValidCoordinates(Pair edges)
+bool Map_Generator::ValidCoordinates(Pair edges) const
 {
-	if (((edges.first>=0)&&(edges.first >= Edges.first)) || 
-		((edges.second>=0)&&(edges.second >= Edges.second)))
-		return false;
-	else
+	if (((edges.first >= 0) && (edges.first < Edges.first)) &&
+		((edges.second >= 0) && (edges.second < Edges.second)))
 		return true;
+	else
+		return false;
 }
 
-std::pair<int, int> Map_Generator::getEdges() {
+std::pair<int, int> Map_Generator::getEdges() const {
 	return Edges;
 }
 
 bool Map_Generator::checkUnblocked(CoordinatesVec *map, Pair coord)
 {
 	if (ValidCoordinates(coord)) {
-		if ((*map)[coord.first][coord.second] == 1)
+		if ((*map)[coord.first][coord.second] == 0)
 			return true;
 		else
 			return false;
