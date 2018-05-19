@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.9.1)
+
+project(ASTAR CXX)
+
+#set stand to C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(SRC_FILES
+    A-star.hpp A-star.cpp
+    map-generator.hpp map-generator.cpp
+)
+set(TEST_SRC
+    ${SRC_FILES}
+    test_mapgen.cpp
+)
+
+add_executable(A_Star main.cpp ${SRC_FILES})
+add_executable(unittests catch.hpp ${TEST_SRC})
+
+INSTALL(TARGETS unittests DESTINATION bin)
+
+enable_testing()
+add_test(00_Install ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target install)
+add_test(unittests unittests)
