@@ -2,7 +2,7 @@
 
 
 
-Map_Generator::Map_Generator(std::pair<int, int> edges): Edges(edges){
+Map_Generator::Map_Generator(Pair edges): Edges(edges){
 
 	Map = new std::vector(edges.first, std::vector<int>(edges.second));
 }
@@ -12,7 +12,7 @@ CoordinatesVec * Map_Generator::GetMap() {
 }
 
 
-bool Map_Generator::setBlockade_coord(std::pair<int, int> &block, CoordinatesVec &map)
+bool Map_Generator::setBlockade_coord(Pair &block, CoordinatesVec &map)
 {
 	if (ValidCoordinates(block)) {
 		map[block.first][block.second] = 1;
@@ -35,10 +35,27 @@ Coordinates_List Map_Generator::setBlockade_coordlist(Coordinates_List &blockvec
 	return failedcoordinates;
 }
 
-bool Map_Generator::ValidCoordinates(std::pair<int, int> edges)
+bool Map_Generator::ValidCoordinates(Pair edges)
 {
-	if (edges.first >= Edges.first || edges.second >= Edges.second)
+	if (((edges.first>=0)&&(edges.first >= Edges.first)) || 
+		((edges.second>=0)&&(edges.second >= Edges.second)))
 		return false;
 	else
 		return true;
+}
+
+std::pair<int, int> Map_Generator::getEdges() {
+	return Edges;
+}
+
+bool Map_Generator::checkUnblocked(CoordinatesVec *map, Pair coord)
+{
+	if (ValidCoordinates(coord)) {
+		if ((*map)[coord.first][coord.second] == 1)
+			return true;
+		else
+			return false;
+	}
+	else
+		return false;
 }
