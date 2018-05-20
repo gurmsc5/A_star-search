@@ -8,13 +8,14 @@ A_star::A_star(Pair edges):
 	cellDetails = new std::vector(edges.first, std::vector<Cell>(edges.second));
 	Map = GetMap();
 
-	for (int i{ 0 }; i < edges.first; i++) {
-		for (int j{ 0 }; j < edges.second; j++)
+	for (auto it = (*cellDetails).begin(); it != (*cellDetails).end(); it++)
+	{
+		for (auto j = it->begin(); j != it->end(); j++)
 		{
-			(*cellDetails)[i][j].F = FLT_MAX;
-			(*cellDetails)[i][j].G = FLT_MAX;
-			(*cellDetails)[i][j].H = FLT_MAX;
-			(*cellDetails)[i][j].parent = { -1,-1 };
+			j->F = FLT_MAX;
+			j->G = FLT_MAX;
+			j->H = FLT_MAX;
+			j->parent = { -1,-1 };
 		}
 	}
 
