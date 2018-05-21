@@ -30,6 +30,7 @@ A_star::~A_star()
 {
 	delete cellDetails;
 	delete _closedList;
+	
 }
 
 

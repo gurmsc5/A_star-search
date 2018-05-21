@@ -43,6 +43,7 @@ public:
 	Map_Generator(Pair edges);
 	~Map_Generator() {
 		delete Map;
+		Map = nullptr;
 	};
 	/*return a pointer to the constructed Map*/
 	CoordinatesVec * GetMap() const;
